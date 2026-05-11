@@ -1,4 +1,4 @@
-# Virtual environment — never push this
+# Virtual environment
 venv/
 
 # Python cache
@@ -7,10 +7,11 @@ __pycache__/
 *.pyo
 .pytest_cache/
 
-# Reports — generated on each run, not source code
-reports/
+# Reports
+reports/*
+!reports/.gitkeep
 
-# Environment variables — may contain secrets
+# Environment variables
 .env
 
 # VS Code settings

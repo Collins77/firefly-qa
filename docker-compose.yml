@@ -19,7 +19,7 @@ services:
       api:
         condition: service_healthy
     environment:
-      - BASE_URL=http://api:8080
+      - BASE_URL=http://api:8080/api/v1
       - USER1_USERNAME=test1
       - USER1_PASSWORD=test123
       - USER2_USERNAME=test2
@@ -27,7 +27,7 @@ services:
     volumes:
       - ./reports:/app/reports
     command: >
-      pytest -v --tb=short
+      pytest --tb=short -q
       -m "not load"
       --html=reports/report.html
       --self-contained-html
