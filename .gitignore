@@ -1,0 +1,21 @@
+# Virtual environment — never push this
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Reports — generated on each run, not source code
+reports/
+
+# Environment variables — may contain secrets
+.env
+
+# VS Code settings
+.vscode/
+
+# Windows junk
+Thumbs.db
+desktop.ini

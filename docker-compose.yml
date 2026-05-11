@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  api:
+    image: infralightio/test-integration-api
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/swagger/index.html || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  tests:
+    build: .
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      - BASE_URL=http://api:8080
+      - USER1_USERNAME=test1
+      - USER1_PASSWORD=test123
+      - USER2_USERNAME=test2
+      - USER2_PASSWORD=test456
+    volumes:
+      - ./reports:/app/reports
+    command: >
+      pytest -v --tb=short
+      -m "not load"
+      --html=reports/report.html
+      --self-contained-html
